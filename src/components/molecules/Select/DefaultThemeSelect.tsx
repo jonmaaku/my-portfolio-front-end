@@ -1,16 +1,5 @@
 import { useCustomThemeContext } from '@/contexts/CustomThemeContext/CustomThemeContext';
-import {
-  FormControl,
-  FormLabel,
-  useColorScheme,
-  RadioGroup,
-  FormControlLabel,
-  Radio,
-  Select,
-  MenuItem,
-  Menu,
-} from '@mui/material';
-import { useEffect } from 'react';
+import { FormControl, FormLabel, useColorScheme, Select, MenuItem } from '@mui/material';
 
 export default function DefaultThemeSelect() {
   const { mode, setMode, systemMode } = useColorScheme();
