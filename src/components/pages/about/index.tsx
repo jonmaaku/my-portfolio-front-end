@@ -2,6 +2,7 @@ import { Box, Stack } from '@mui/material';
 import { UserProfileHeader, BioSection, SkillsSection } from '@/components/organisms/user';
 import { ExperienceSection } from '@/components/organisms/experience';
 import { EducationSection } from '@/components/organisms/education';
+import { AnimatedBackground } from '@/components/molecules/AnimatedBackground';
 
 export default function AboutPageContent() {
   const skills = [
@@ -51,36 +52,42 @@ export default function AboutPageContent() {
       institution: 'University of the Philippines - Cebu',
       duration: '2019 - 2023',
       description:
-        'Graduated Magna Cum Laude. Specialized in software engineering and web development. Participated in various coding competitions and hackathons.',
+        'Graduated Magna Cum Laude. Specialized in software engineering and web development. ',
     },
     {
       degree: 'Master of Engineering in Artificial Intelligence',
       institution: 'University of the Philippines - Diliman',
-      duration: '2014 - PRESENT (CURRENT)',
+      duration: '2024 - PRESENT (CURRENT)',
       description:
-        'Graduated Magna Cum Laude. Specialized in software engineering and web development. Participated in various coding competitions and hackathons.',
+        "Currently pursuing a Master's degree in Artificial Intelligence, focusing on machine learning and natural language processing.",
     },
   ];
 
   return (
-    <Box sx={{ padding: { xs: 2, md: 4 }, maxWidth: 1200, margin: '0 auto' }}>
-      <Stack spacing={4}>
-        <UserProfileHeader
-          name="Your Name"
-          title="About Me"
-          subtitle="Passionate developer with a love for creating innovative solutions and beautiful user experiences."
-          avatarSrc="/assets/profile-picture.jpg"
-          initials="JP"
-        />
+    <Box sx={{ position: 'relative', minHeight: '100vh' }}>
+      <AnimatedBackground />
 
-        <BioSection paragraphs={bioParagraphs} />
+      <Box
+        sx={{ padding: { xs: 2, md: 4 }, maxWidth: 1200, margin: '0 auto', position: 'relative' }}
+      >
+        <Stack spacing={4}>
+          <UserProfileHeader
+            name="Your Name"
+            title="About Me"
+            subtitle="Passionate developer with a love for creating innovative solutions and beautiful user experiences."
+            avatarSrc="/assets/profile-picture.jpg"
+            initials="JP"
+          />
 
-        <SkillsSection skills={skills} />
+          <BioSection paragraphs={bioParagraphs} />
 
-        <ExperienceSection experiences={experiences} />
+          <SkillsSection skills={skills} />
 
-        <EducationSection education={education} />
-      </Stack>
+          <ExperienceSection experiences={experiences} />
+
+          <EducationSection education={education} />
+        </Stack>
+      </Box>
     </Box>
   );
 }

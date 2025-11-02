@@ -14,14 +14,14 @@ export default function ContactPageContent() {
     {
       icon: <Email />,
       label: 'Email',
-      value: 'your.email@example.com',
-      link: 'mailto:your.email@example.com',
+      value: 'jlacopiado@up.edu.ph',
+      link: 'mailto:jlacopiado@up.edu.ph',
     },
     {
       icon: <Phone />,
       label: 'Phone',
-      value: '+1 (555) 123-4567',
-      link: 'tel:+15551234567',
+      value: '+63 (977) 375-7052',
+      link: 'tel:+639773757052',
     },
     {
       icon: <LocationOn />,

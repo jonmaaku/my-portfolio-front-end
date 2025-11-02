@@ -82,11 +82,11 @@ const breakpointsTheme = createTheme({
       dtm: 1200,
       dtl: 1400,
 
-      xs: 0,
-      sm: 600,
-      md: 900,
-      lg: 1200,
-      xl: 1536,
+      xs: 0, // mobile
+      sm: 600, // tablet
+      md: 900, // laptop
+      lg: 1200, // desktop
+      xl: 1536, // large desktop
     },
   },
 });

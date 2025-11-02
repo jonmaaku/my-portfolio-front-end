@@ -13,7 +13,7 @@ export default function Document() {
         />
         <link rel="icon" href="/favicon.ico"></link>
       </Head>
-      <body style={{ margin: 0 }}>
+      <body style={{ margin: 0, overflowX: 'hidden' }}>
         <InitColorSchemeScript attribute="class" />
 
         <Main />

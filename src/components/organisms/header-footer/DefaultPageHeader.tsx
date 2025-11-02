@@ -1,10 +1,16 @@
 import DefaultThemeSelect from '@/components/molecules/Select/DefaultThemeSelect';
 import { useAuthContext } from '@/contexts/AuthContext/AuthContext';
-import { KeyboardArrowDown, KeyboardArrowUp } from '@mui/icons-material';
+import {
+  KeyboardArrowDown,
+  KeyboardArrowLeft,
+  KeyboardArrowRight,
+  KeyboardArrowUp,
+} from '@mui/icons-material';
 import { Box, Button, Popover, Stack, Typography } from '@mui/material';
 import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
+import NavigationTabContainer from './NavigationTab';
 
 export const MINIMUM_TOP_HEADER_HEIGHT = '80px';
 
@@ -38,8 +44,38 @@ export default function DefaultPageHeader() {
       top={0}
       zIndex={998}
       bgcolor="inherit"
+      padding={2}
     >
-      <Box>
+      <Box display={{ xs: 'block', md: 'none' }}>
+        <Button onClick={() => setAnchorEl(anchorEl ? null : document.createElement('button'))}>
+          {!open && <KeyboardArrowRight />}
+        </Button>
+        <NavigationTabContainer open={open}>
+          <Stack direction="column" spacing={1} p={2} pt={5} position="relative">
+            <Button onClick={handleClose} sx={{ position: 'absolute', top: 4, right: 3 }}>
+              <KeyboardArrowLeft />
+            </Button>
+            <Button component={Link} href="/">
+              Home
+            </Button>
+            <Button component={Link} href="/about">
+              About
+            </Button>
+            <Button component={Link} href="/projects">
+              Projects
+            </Button>
+            <Button component={Link} href="/contact">
+              Contact
+            </Button>
+          </Stack>
+        </NavigationTabContainer>
+      </Box>
+      <Box
+        display={{
+          xs: 'none',
+          md: 'block',
+        }}
+      >
         {/* Add content of header */}
         <Typography variant="h6">My Portfolio</Typography>
         <Stack direction="row" spacing={2}>
@@ -57,14 +93,16 @@ export default function DefaultPageHeader() {
           </Button>
         </Stack>
       </Box>
-      <Stack direction="row" spacing={2}>
+      <Stack direction="row" spacing={2} px={3}>
         {' '}
-        <Button component={Link} href="/auth/sign-in">
-          Sign In
-        </Button>
-        <Button component={Link} href="/auth/sign-up">
-          Sign Up
-        </Button>
+        <Stack direction="row" spacing={1} alignItems="center">
+          <Button component={Link} href="/auth/sign-in">
+            Sign In
+          </Button>
+          <Button component={Link} href="/auth/sign-up">
+            Sign Up
+          </Button>
+        </Stack>
         <DefaultThemeSelect />
       </Stack>
     </Box>
