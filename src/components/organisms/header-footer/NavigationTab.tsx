@@ -6,7 +6,7 @@ export default function NavigationTabContainer(props: BoxProps & { open: boolean
       sx={{
         position: 'fixed',
         top: 0,
-        // left: props.open ? 0 : '-100%',
+        left: 0,
         width: '250px',
         height: '100vh',
         bgcolor: 'background.paper',

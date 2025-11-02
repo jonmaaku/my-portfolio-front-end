@@ -1,4 +1,3 @@
-import DefaultThemeSelect from '@/components/molecules/Select/DefaultThemeSelect';
 import { useAuthContext } from '@/contexts/AuthContext/AuthContext';
 import {
   KeyboardArrowDown,
@@ -11,8 +10,14 @@ import Image from 'next/image';
 import Link from 'next/link';
 import { useState } from 'react';
 import NavigationTabContainer from './NavigationTab';
+import dynamic from 'next/dist/shared/lib/dynamic';
 
 export const MINIMUM_TOP_HEADER_HEIGHT = '80px';
+
+const DefaultThemeSelect = dynamic(
+  () => import('@/components/molecules/Select/DefaultThemeSelect'),
+  { ssr: false }
+);
 
 export default function DefaultPageHeader() {
   const [anchorEl, setAnchorEl] = useState<HTMLButtonElement | null>(null);
