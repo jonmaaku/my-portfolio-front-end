@@ -52,7 +52,13 @@ const darkTheme = createTheme({
       variants: [
         {
           props: { variant: 'contained', color: 'primary' },
-          style: {},
+          style: {
+            backgroundColor: '#FFC107',
+            color: '#010101',
+            '&:hover': {
+              backgroundColor: '#FFB300',
+            },
+          },
         },
       ],
     },

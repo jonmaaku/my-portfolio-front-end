@@ -8,13 +8,25 @@ import AuthProvider from '@/contexts/AuthContext/AuthProvider';
 import { SnackbarProvider } from 'notistack';
 import lightTheme from '@/config/themes/lightTheme';
 import darkTheme from '@/config/themes/darkTheme';
-import { useEffect, useMemo } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import CustomThemeProvider from '@/contexts/CustomThemeContext/CustomThemeProvider';
 import { useCustomThemeContext } from '@/contexts/CustomThemeContext/CustomThemeContext';
 
 function CustomComponent({ Component, pageProps: { session, ...pageProps } }: AppProps) {
+  const [isClient, setIsClient] = useState(false);
+
+  useEffect(() => {
+    setIsClient(true);
+  }, []);
   const { mode } = useCustomThemeContext();
-  const theme = mode === 'light' ? lightTheme : mode === 'dark' ? darkTheme : lightTheme;
+  const theme = useMemo(() => {
+    if (isClient && typeof window !== 'undefined' && mode === 'system') {
+      const isDarkMode = window?.matchMedia('(prefers-color-scheme: dark)')?.matches;
+
+      return isDarkMode ? darkTheme : lightTheme;
+    }
+    return mode === 'light' ? lightTheme : mode === 'dark' ? darkTheme : lightTheme;
+  }, [mode, isClient]);
 
   return (
     <ThemeProvider theme={theme}>
