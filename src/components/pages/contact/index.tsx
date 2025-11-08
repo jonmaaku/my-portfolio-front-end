@@ -1,5 +1,7 @@
 import { Box, Typography, Stack } from '@mui/material';
+import nodemailer from 'nodemailer';
 import { Email, Phone, LocationOn, LinkedIn, GitHub } from '@mui/icons-material';
+
 import {
   ContactForm,
   ContactInfo,
@@ -61,12 +63,20 @@ export default function ContactPageContent() {
   ];
 
   const handleFormSubmit = async (data: ContactFormData): Promise<boolean> => {
-    // Here you would typically send the form data to your backend API
-    // For now, we'll simulate a submission
-    await new Promise(resolve => setTimeout(resolve, 2000));
-
-    // Simulate success/failure
-    return Math.random() > 0.2; // 80% success rate
+    console.log('Form Data:', data);
+    console.log('EMAIL_USER:', process.env.EMAIL_USER);
+    console.log('EMAIL_PASS:', process.env.EMAIL_PASS);
+    try {
+      const response = await fetch('/api/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      return response.ok;
+    } catch (error) {
+      console.error('Error sending email:', error);
+      return false;
+    }
   };
 
   return (
